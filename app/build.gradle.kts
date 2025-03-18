@@ -26,7 +26,7 @@ android {
             )
         }
         debug {
-            isTestCoverageEnabled = true // Corrected line, use "isTestCoverageEnabled"
+            isTestCoverageEnabled = true // Correct way to enable test coverage
         }
     }
 
@@ -35,6 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
+
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.3.1")
