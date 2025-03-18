@@ -1,11 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.application) // Keep this one and remove the other one
     id("org.sonarqube") version "4.3.0.3225"
-    id("com.android.application") version "8.1.0"
-
 }
-
-
 
 android {
     namespace = "com.example.myhospital"
@@ -30,6 +26,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
