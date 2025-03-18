@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.application") version "7.4.2"
     id("org.sonarqube") version "4.3.0.3225"
     id("jacoco") // Apply Jacoco plugin
 }
