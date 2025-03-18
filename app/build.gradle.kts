@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application")
     id("org.sonarqube") version "4.3.0.3225"
-    id("jacoco") // Add the Jacoco plugin
+    id("jacoco") // Apply Jacoco plugin
 }
 
 android {
@@ -25,34 +25,27 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            testCoverageEnabled = true // Enable test coverage for debug build type
+        }
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    // Enable test coverage in the debug build type
-    buildTypes {
-        getByName("debug") {
-            testCoverageEnabled = true // This enables test coverage
-        }
-    }
 }
 
 dependencies {
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.activity)
-    implementation(libs.constraintlayout)
-    implementation(libs.core.splashscreen)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-
-    // Splash Screen API
-    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+}
+
+jacoco {
+    toolVersion = "0.8.7" // Specify Jacoco version
 }
 
 sonarqube {
@@ -60,11 +53,10 @@ sonarqube {
         property("sonar.projectKey", "myhospital")
         property("sonar.projectName", "MyHospital")
         property("sonar.host.url", "http://localhost:9000")
-        property("sonar.login", System.getenv("SONAR_TOKEN")) // Use the environment variable for the token
-        property("sonar.sources", "src/main/java, src/main/kotlin") // Java and Kotlin source directories
+        property("sonar.login", System.getenv("SONAR_TOKEN"))
+        property("sonar.sources", "src/main/java, src/main/kotlin")
         property("sonar.language", "java")
         property("sonar.sourceEncoding", "UTF-8")
-        // Add paths for test reports and coverage reports
         property("sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/TEST-*.xml")
         property("sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec")
     }
