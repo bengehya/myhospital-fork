@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My hospital</string>
+    <string name="welcome_to_my_hospital">Welcome to My Hospital</string>
+    <string name="no_internet_message">No internet connection.</string>
+    <string name="todo">TODO</string>
+    <string name="search">Search</string>
+    <string name="add">Add</string>
+    <string name="submit">submit</string>
+    <string name="profile">Profile</string>
+    <string name="welcomes_you">welcomes_you</string>
+    <string name="todo1">TODO</string>
+    <string name="add1">Add</string>
+    <string name="hospitals_play_a_crucial_role_in_modern_healthcare">Hospitals play a crucial role in modern healthcare.</string>
+</resources>
+
