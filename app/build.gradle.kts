@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application) // Keep this one and remove the other one
+    alias(libs.plugins.android.application) // Use this line only and remove the other one
     id("org.sonarqube") version "4.3.0.3225"
 }
 
@@ -55,7 +55,7 @@ sonarqube {
         property("sonar.projectName", "MyHospital")
         property("sonar.host.url", "http://localhost:9000") 
         property("sonar.login", "sqa_2ccc15a8d09c5b160342b49251706e8f48d2be65")
-        property("sonar.sources", "src/main/java") // Définit où se trouvent tes fichiers source
+        property("sonar.sources", "src/main/java")
         property("sonar.language", "java")
         property("sonar.sourceEncoding", "UTF-8")
     }
