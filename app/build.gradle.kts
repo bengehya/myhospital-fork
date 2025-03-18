@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     id("org.sonarqube") version "4.3.0.3225"
+    id("jacoco") // Add the Jacoco plugin
 }
 
 android {
@@ -25,15 +26,16 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    // Ajout pour générer la couverture des tests
+    // Enable test coverage in the debug build type
     buildTypes {
-        debug {
-            testCoverageEnabled true
+        getByName("debug") {
+            testCoverageEnabled = true // This enables test coverage
         }
     }
 }
@@ -58,11 +60,11 @@ sonarqube {
         property("sonar.projectKey", "myhospital")
         property("sonar.projectName", "MyHospital")
         property("sonar.host.url", "http://localhost:9000")
-        property("sonar.login", System.getenv("SONAR_TOKEN")) // Utilisation de la variable d'environnement
-        property("sonar.sources", "src/main/java, src/main/kotlin") // Sources Java et Kotlin
+        property("sonar.login", System.getenv("SONAR_TOKEN")) // Use the environment variable for the token
+        property("sonar.sources", "src/main/java, src/main/kotlin") // Java and Kotlin source directories
         property("sonar.language", "java")
         property("sonar.sourceEncoding", "UTF-8")
-        // Ajout des chemins de rapports de tests et couverture
+        // Add paths for test reports and coverage reports
         property("sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/TEST-*.xml")
         property("sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec")
     }
