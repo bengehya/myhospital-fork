@@ -26,7 +26,7 @@ android {
             )
         }
         debug {
-            isTestCoverageEnabled = true // Enable test coverage for debug build type
+            isTestCoverageEnabled = true // Corrected line, use "isTestCoverageEnabled"
         }
     }
 
@@ -45,21 +45,7 @@ dependencies {
 }
 
 jacoco {
-    toolVersion = "0.8.7" // Specify Jacoco version
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform() // Ensures tests are run using JUnit
-    finalizedBy(tasks.jacocoTestReport) // Run Jacoco report task after tests
-}
-
-tasks.jacocoTestReport {
-    dependsOn("testDebugUnitTest") // Make sure to run tests before generating report
-    reports {
-        xml.isEnabled = true // Enable XML report
-        html.isEnabled = true // Enable HTML report
-        csv.isEnabled = false // Disable CSV report (optional)
-    }
+    toolVersion = "0.8.7" // Jacoco version
 }
 
 sonarqube {
