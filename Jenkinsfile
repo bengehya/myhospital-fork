@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Jacobkitams/Myhospital.git'
+                git 'https://github.com/bengehya/myhospital-fork.git'
             }
         }
 
