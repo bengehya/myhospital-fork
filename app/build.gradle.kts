@@ -13,7 +13,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,6 +29,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    // Ajout pour générer la couverture des tests
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
 }
 
 dependencies {
@@ -42,9 +48,8 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    //Splash Screen API
+    // Splash Screen API
     implementation("androidx.core:core-splashscreen:1.0.1")
-
     implementation("com.google.android.material:material:1.4.0")
 }
 
@@ -52,10 +57,13 @@ sonarqube {
     properties {
         property("sonar.projectKey", "myhospital")
         property("sonar.projectName", "MyHospital")
-        property("sonar.host.url", "http://localhost:9000") 
-        property("sonar.login", "sqa_2ccc15a8d09c5b160342b49251706e8f48d2be65")
-        property("sonar.sources", "src/main/java") // Définit où se trouvent tes fichiers source
+        property("sonar.host.url", "http://localhost:9000")
+        property("sonar.login", System.getenv("SONAR_TOKEN")) // Utilisation de la variable d'environnement
+        property("sonar.sources", "src/main/java, src/main/kotlin") // Sources Java et Kotlin
         property("sonar.language", "java")
         property("sonar.sourceEncoding", "UTF-8")
+        // Ajout des chemins de rapports de tests et couverture
+        property("sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/TEST-*.xml")
+        property("sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec")
     }
 }
