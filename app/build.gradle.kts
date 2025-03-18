@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     id("org.sonarqube") version "4.3.0.3225"
+    id("com.android.application") version "8.8.0"
 }
+
+
 
 android {
     namespace = "com.example.myhospital"
