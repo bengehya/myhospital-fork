@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application") version "7.4.2"
+    id("com.android.application") version "8.1.0" // Updated AGP version
     id("org.sonarqube") version "4.3.0.3225"
     id("jacoco")
 }
@@ -26,7 +26,7 @@ android {
             )
         }
         debug {
-            isTestCoverageEnabled = true
+            isTestCoverageEnabled = true // Correct property name
         }
     }
 
@@ -45,45 +45,7 @@ dependencies {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
-}
-
-tasks.withType<Test> {
-    configure<JacocoTaskExtension> {
-        isIncludeNoLocationClasses = true
-        excludes = listOf("jdk.internal.*")
-    }
-}
-
-tasks.register<JacocoReport>("jacocoTestReport") {
-    dependsOn("testDebugUnitTest", "createDebugCoverageReport")
-
-    reports {
-        xml.required.set(true)
-        csv.required.set(false)
-        html.required.set(true)
-    }
-
-    val fileFilter = listOf(
-        "**/R.class",
-        "**/R$*.class",
-        "**/BuildConfig.*",
-        "**/Manifest*.*",
-        "**/*Test*.*",
-        "android/**/*.*"
-    )
-
-    val debugTree = fileTree("${project.buildDir}/tmp/kotlin-classes/debug") {
-        exclude(fileFilter)
-    }
-
-    val mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories.setFrom(files(mainSrc))
-    classDirectories.setFrom(files(debugTree))
-    executionData.setFrom(fileTree(project.buildDir) {
-        include("jacoco/testDebugUnitTest.exec", "outputs/code-coverage/connected/*coverage.ec")
-    })
+    toolVersion = "0.8.7" // Specify Jacoco version
 }
 
 sonarqube {
@@ -95,8 +57,7 @@ sonarqube {
         property("sonar.sources", "src/main/java, src/main/kotlin")
         property("sonar.language", "java")
         property("sonar.sourceEncoding", "UTF-8")
-        property("sonar.junit.reportPaths", "build/test-results/testDebugUnitTest")
+        property("sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/TEST-*.xml")
         property("sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec")
-        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml")
     }
 }
