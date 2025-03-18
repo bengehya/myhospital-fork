@@ -51,3 +51,16 @@ dependencies {
 
 
 }
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "myhospital"
+        property "sonar.projectName", "MyHospital"
+        property "sonar.host.url", "http://localhost:9000" 
+        property "sonar.login", "sqa_2ccc15a8d09c5b160342b49251706e8f48d2be65"
+        property "sonar.sources", "src/main/java" // Définit où se trouvent tes fichiers source
+        property "sonar.language", "java"
+        property "sonar.sourceEncoding", "UTF-8"
+    }
+}
+
