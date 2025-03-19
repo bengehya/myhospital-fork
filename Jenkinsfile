@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONAR_TOKEN = credentials('SONAR_TOKEN') // Récupère le token de Jenkins Credentials
+        SONAR_TOKEN = credentials('SONAR_TOKEN') 
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarScanner') {
-                    bat "./gradlew sonarqube -Dsonar.login=${SONAR_TOKEN}"
+                    bat "./gradlew sonar -Dsonar.login=${SONAR_TOKEN}"
                 }
             }
         }
