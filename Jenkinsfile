@@ -20,9 +20,12 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarScanner') {
-                    bat "./gradlew sonar -Dsonar.token=${SONAR_TOKEN}"
+                script {
+                    echo "Testing if SONAR_TOKEN is loaded: ${SONAR_TOKEN}"
                 }
+                bat "echo Testing SONAR_TOKEN in Windows: %SONAR_TOKEN%"
+
+                bat './gradlew sonar -Dsonar.token=%SONAR_TOKEN%'
             }
         }
     }
