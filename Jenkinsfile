@@ -18,14 +18,27 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('Check Sonar Token') {
             steps {
                 script {
-                    echo "Testing if SONAR_TOKEN is loaded: ${SONAR_TOKEN}"
+                    if (SONAR_TOKEN) {
+                        echo "✅ SONAR_TOKEN is set. First 5 chars: ${SONAR_TOKEN.take(5)}******"
+                    } else {
+                        error "❌ SONAR_TOKEN is NOT set! Check Jenkins credentials."
+                    }
                 }
-                bat "echo Testing SONAR_TOKEN in Windows: %SONAR_TOKEN%"
+                bat "echo SONAR_TOKEN Windows: ***** (hidden for security)"
+            }
+        }
 
-                bat './gradlew sonar -Dsonar.token=%SONAR_TOKEN%'
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarScanner') { // Assure-toi que 'SonarScanner' est bien défini dans Jenkins
+                    script {
+                        echo "🚀 Running SonarQube Analysis..."
+                    }
+                    bat './gradlew sonar -Dsonar.token=%SONAR_TOKEN%'
+                }
             }
         }
     }
