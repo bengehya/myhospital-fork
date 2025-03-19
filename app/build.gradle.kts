@@ -26,7 +26,9 @@ android {
             )
         }
         debug {
-            isTestCoverageEnabled = true // Correct property name
+         enableUnitTestCoverage = true
+        enableAndroidTestCoverage = true
+         // Correct property name
         }
     }
 
