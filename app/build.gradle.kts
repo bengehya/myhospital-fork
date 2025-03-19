@@ -58,7 +58,7 @@ sonarqube {
         property("sonar.projectKey", "myhospital")
         property("sonar.projectName", "MyHospital")
         property("sonar.host.url", "http://localhost:9000")
-        property("sonar.login", System.getenv("SONAR_TOKEN"))
+        property("sonar.token", System.getenv("SONAR_TOKEN"))
         property("sonar.sources", "src/main/java") // Vérifie si src/main/kotlin est nécessaire
         property("sonar.language", "java")
         property("sonar.sourceEncoding", "UTF-8")
