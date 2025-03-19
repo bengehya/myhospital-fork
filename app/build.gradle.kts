@@ -65,7 +65,8 @@ sonarqube {
         
         // Vérifie l'existence des fichiers avant d'activer ces options
         property("sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/TEST-*.xml")
-        property("sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/testDebugUnitTest/jacocoTestReport.xml")
+
     }
 }
 
