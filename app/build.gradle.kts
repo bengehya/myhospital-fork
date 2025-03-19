@@ -57,10 +57,13 @@ sonarqube {
         property("sonar.projectName", "MyHospital")
         property("sonar.host.url", "http://localhost:9000")
         property("sonar.login", System.getenv("SONAR_TOKEN"))
-        property("sonar.sources", "src/main/java, src/main/kotlin")
+        property("sonar.sources", "src/main/java") // Vérifie si src/main/kotlin est nécessaire
         property("sonar.language", "java")
         property("sonar.sourceEncoding", "UTF-8")
+        
+        // Vérifie l'existence des fichiers avant d'activer ces options
         property("sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/TEST-*.xml")
         property("sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec")
     }
 }
+
