@@ -47,8 +47,9 @@ dependencies {
 
 
 jacoco {
-    toolVersion = "0.8.7" // Specify Jacoco version
+    toolVersion = "0.8.11" // Utiliser la dernière version compatible avec Java 21
 }
+
 
 sonarqube {
     properties {
