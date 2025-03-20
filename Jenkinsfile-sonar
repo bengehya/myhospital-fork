@@ -36,7 +36,7 @@ pipeline {
                 script {
                     echo "🚀 Running SonarQube Analysis..."
                 }
-                withSonarQubeEnv('SonarScanner') { // Ensure 'SonarScanner' is correctly defined in Jenkins
+                withSonarQubeEnv('SonarScanner') {
                     bat "./gradlew sonar -Dsonar.login=${SONAR_TOKEN}"
                 }
             }
@@ -45,8 +45,12 @@ pipeline {
 
     post {
         always {
-            echo 'Cleaning up...'
-            deleteDir() // Clean up the workspace after the build
+            script {
+                echo 'Cleaning up...'
+                node {
+                    deleteDir() // Clean up the workspace inside the node block
+                }
+            }
         }
         success {
             echo '✅ Build and SonarQube Analysis completed successfully!'
