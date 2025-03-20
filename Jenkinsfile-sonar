@@ -2,7 +2,9 @@ pipeline {
     agent any
 
     environment {
-        SONAR_TOKEN = credentials('SONAR_TOKEN') 
+        SONAR_TOKEN = credentials('SONAR_TOKEN')
+        JAVA_HOME = 'C:\\Program Files\\Java\\jdk-21' // Set the JAVA_HOME path
+        PATH = "${env.JAVA_HOME}\\bin;${env.PATH}" // Update the PATH to include Java
     }
 
     stages {
