@@ -35,7 +35,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarScanner') { // Assure-toi que 'SonarScanner' est bien défini dans Jenkins
                     script {
-                        echo "🚀 Running SonarQube Analysis..."
+                        echo "🚀 Running SonarQube Analysis"
                     }
                    bat './gradlew sonar -Dsonar.token=squ_d0728f3999a68e05f52b8b8bd30e8700348f7f7f'
 
