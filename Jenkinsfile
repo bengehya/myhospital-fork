@@ -33,7 +33,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarScanner') { // Assure-toi que 'SonarScanner' est bien défini dans Jenkins
+                withSonarQubeEnv('SonarScanner') {
                     script {
                         echo "🚀 Running SonarQube Analysis"
                     }
