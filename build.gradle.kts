@@ -6,8 +6,8 @@ plugins {
 // Configure SonarQube properties
 sonarqube {
     properties {
-        property("sonar.projectKey", "your_project_key")
-        property("sonar.organization", "your_organization") // Only needed for SonarCloud
+        property("sonar.projectKey", "myhospital1")
+        property("sonar.organization", "myhospital1") // Only needed for SonarCloud
         property("sonar.host.url", "http://your-sonarqube-server.com") // Update if self-hosted
         property("sonar.login", System.getenv("SONAR_TOKEN")) // Using environment variable
     }
