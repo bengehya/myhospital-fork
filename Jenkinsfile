@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONAR_TOKEN = credentials('SONAR_TOKEN') // Ensure this is set correctly in Jenkins credentials
+        SONAR_TOKEN = credentials('sonar-token') // Vérifie bien l'ID dans Jenkins
     }
 
     stages {
@@ -40,7 +40,15 @@ pipeline {
                     script {
                         echo "🚀 Running SonarQube Analysis!"
                     }
-                    bat './gradlew sonar -Dsonar.login=${SONAR_TOKEN}' // Updated to use sonar.login instead of sonar.token
+                    bat './gradlew sonar -Dsonar.token=${SONAR_TOKEN}'
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
