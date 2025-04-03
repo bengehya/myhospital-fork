@@ -9,6 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/bengehya/myhospital-fork.git'
+                credentialsId: 'c8a69c20-2f7d-4313-a435-1674823f3503'
             }
         }
 
