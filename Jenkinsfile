@@ -34,14 +34,10 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarScanner') {
-                    script {
-                        echo "🚀 Running SonarQube Analysis!"
-                    }
-                    // Pass sonar.token as a system property
-                    bat './gradlew sonar -Dsonar.token=%SONAR_TOKEN%'
+                    bat './gradlew sonar' // Let Jenkins inject the token
                 }
             }
         }
