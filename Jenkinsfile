@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONAR_TOKEN = credentials('sonar-token') // Vérifie bien l'ID dans Jenkins
+        SONAR_TOKEN = credentials('sonar-token') // Check Jenkins credentials ID
     }
 
     stages {
@@ -40,7 +40,8 @@ pipeline {
                     script {
                         echo "🚀 Running SonarQube Analysis!"
                     }
-                    bat './gradlew sonar -Dsonar.token=${SONAR_TOKEN}'
+                    // Pass sonar.token as a system property
+                    bat './gradlew sonar -Dsonar.token=%SONAR_TOKEN%'
                 }
             }
         }
