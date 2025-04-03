@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONAR_TOKEN = credentials('SONAR_TOKEN')
+        SONAR_TOKEN = credentials('SONAR_TOKEN') // Ensure this is set correctly in Jenkins credentials
     }
 
     stages {
@@ -40,7 +40,7 @@ pipeline {
                     script {
                         echo "🚀 Running SonarQube Analysis!"
                     }
-                    bat './gradlew sonar -Dsonar.token=${SONAR_TOKEN}'
+                    bat './gradlew sonar -Dsonar.login=${SONAR_TOKEN}' // Updated to use sonar.login instead of sonar.token
                 }
             }
         }
